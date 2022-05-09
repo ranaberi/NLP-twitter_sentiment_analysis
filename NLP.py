@@ -25,3 +25,20 @@ def get_pos(sentences):
         if w in positive_words:
             pos_count=pos_count+1
     return pos_count
+
+negative_words = []
+with open("negative_words.txt") as pos_f:
+    for lin in pos_f:
+        if lin[0] != ';' and lin[0] != '\n':
+            negative_words.append(lin.strip())
+
+def get_neg(sentences):
+    neg_score = 0
+    lower_sentences = sentences.lower()
+    stripped_sentences = strip_punctuation(lower_sentences)
+    words = stripped_sentences.split()
+    
+    for word in words:
+        if word in negative_words:
+            neg_score= neg_score+1
+    return neg_score
