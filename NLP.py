@@ -42,3 +42,21 @@ def get_neg(sentences):
         if word in negative_words:
             neg_score= neg_score+1
     return neg_score
+
+#The following code opens the twitter file
+fileref=open("project_twitter_data.csv","r")
+data = fileref.readlines()
+
+#The following code writes in the csv file named resulting_data
+outfile=open("resulting_data.csv","w")
+outfile.write("Number of Retweets, Number of Replies, Positive Score, Negative Score, Net Score")
+outfile.write("\n")
+
+for i in data[1:]:
+    res_row=""
+    splt=i.strip().split(",")           #Leading and trailing whitespaces are removed with strip
+    res_row=("{},{},{},{},{}".format(splt[1], splt[2], get_pos(splt[0]), get_neg(splt[0]), (get_pos(splt[0])-get_neg(splt[0]))))
+    outfile.write(res_row)
+    outfile.write("\n")
+
+outfile.close()
