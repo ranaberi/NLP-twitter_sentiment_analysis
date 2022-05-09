@@ -1,3 +1,5 @@
+import pandas as pd
+import matplotlib.pyplot as plt
 # strip_punctuation removes characters considered punctuation from everywhere in the word.
 punctuation_chars = ["'", '"', ",", ".", "!", ":", ";", '#', '@']
 def strip_punctuation(word):
@@ -61,9 +63,8 @@ for i in data[1:]:
 
 outfile.close()
 
-import pandas as pd
-import matplotlib.pyplot as plt
-df=pd.read_csv("Project 1-Sentiment Classifier.csv")
+
+df=pd.read_csv("Project_twitter_data.csv")
 fig,ax=plt.subplots()
 my_scatter_plot=ax.scatter(df[" Net Score"],df["Number of Retweets"])
 plt.show()
